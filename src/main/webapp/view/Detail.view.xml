@@ -1,0 +1,157 @@
+<mvc:View
+	controllerName="behsample.controller.Detail"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:semantic="sap.m.semantic"
+	xmlns:form="sap.ui.layout.form">
+
+	<semantic:DetailPage
+		id="page"
+		navButtonPress="onNavBack"
+		showNavButton="{device>/system/phone}"
+		title="{i18n>detailTitle}"
+		busy="{detailView>/busy}"
+		busyIndicatorDelay="{detailView>/delay}">
+
+		<semantic:content>
+			<ObjectHeader
+				id="objectHeader"
+				title="{BusinessEvent/SAPObjectTaskTypeName}"
+				number="{
+					path: 'BusinessEvent/SAPBusinessObjectKey1',
+					formatter: '.formatter.numberFormatter'}">
+				
+				<attributes>
+					<ObjectAttribute text="Subscriber: {BusinessEvent/BusinessEventSubscriberName}" />
+					<ObjectAttribute text="{
+						path: 'BusinessEvent/CreationUTCDateTime',
+						type: 'sap.ui.model.type.DateTime',
+						formatOptions: {
+							source: {
+								pattern: 'yyyyMMddHHmmss'
+						    },
+							style: 'short'
+						}}" />
+				</attributes>
+			</ObjectHeader>
+			
+			<IconTabBar
+			id="idIconTabBarNoIcons"
+			expanded="{device>/isNoPhone}"
+			class="sapUiResponsiveContentPadding">
+			
+			<items>
+				<IconTabFilter text="{i18n>SalesOrderDetails}">
+					<form:SimpleForm id="salesOrderDetails"
+						title="{i18n>SalesOrderDetails}"
+						editable="false"
+						layout="ResponsiveGridLayout"
+						labelSpanXL="3"
+						labelSpanL="3"
+						labelSpanM="3"
+						labelSpanS="12"
+						adjustLabelSpan="false"
+						emptySpanXL="4"
+						emptySpanL="4"
+						emptySpanM="4"
+						emptySpanS="0"
+						columnsXL="1"
+						columnsL="1"
+						columnsM="1">
+						<form:content>
+							<l:Grid>
+							<Label text="{i18n>TransferLocation}: "/>
+							<Text text="{BusinessObject/IncotermsTransferLocation}"/>
+							<Label text="{i18n>OrderDate}: "/>
+							<Text text="{path: 'BusinessObject/SalesOrderDate',
+										formatter: '.formatter.dateFormatter'}" />
+							 
+							<Label text="{i18n>TotalNetAmount}: "/>
+							<Text text="{path: 'BusinessObject/TotalNetAmount',
+										formatter: '.formatter.currencyValue'}
+										{BusinessObject/TransactionCurrency}" /> 
+							<Label text="{i18n>LastChanged}: "/>
+							<Text text="{
+								path: 'BusinessObject/LastChangeDateTime',
+								formatter: '.formatter.dateFormatter'}" />
+							<Label text="{i18n>SoldTo}: " wrapping="true"/>
+							<Text text="{BusinessObject/SoldToParty}"/>
+							<Label text="{i18n>CreatedByUser}: "/>
+							<Text text="{BusinessObject/CreatedByUser}"/>
+							<Label text="{i18n>PurchaseOrderByCustomer}: " wrapping="true"/>
+							<Text text="{BusinessObject/PurchaseOrderByCustomer}"/>
+							<Label text="{i18n>RequestedDeliveryDate}: " wrapping="true"/>
+							<Text text="{
+								path: 'BusinessObject/RequestedDeliveryDate',
+								formatter: '.formatter.dateFormatter'
+							}" />
+							</l:Grid>
+						</form:content>
+					</form:SimpleForm>			
+				</IconTabFilter>
+				
+				<IconTabFilter text="{i18n>DetailsOfOrderedItems}">
+					<Table
+						id="itemDetailsTable"
+						width="auto"
+						items="{
+							path: 'BusinessObject/to_Item/'
+						}">
+			
+						<headerToolbar>
+							<Toolbar>
+								<Title id="tableHeader" text="{i18n>DetailsOfOrderedItems}"/>
+							</Toolbar>
+						</headerToolbar>
+			
+						<columns>
+							<Column>
+								<Text text="{i18n>Item}"/>
+							</Column>
+							
+							<Column>
+								<Text text="{i18n>Quantity}"/>
+							</Column>
+							
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>GrossWeight}"/>
+							</Column>
+							
+							<Column demandPopin="false" minScreenWidth="Tablet">
+								<Text text="{i18n>NetWeight}"/>
+							</Column>
+							
+							<Column>
+								<Text text="{i18n>PricingTime}"/>
+							</Column>
+						</columns>
+			
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{SalesOrderItemText}"/>
+									<Text text="{RequestedQuantity} {RequestedQuantityUnit}"/>
+									<Text text="{path: 'ItemGrossWeight',
+												formatter: '.formatter.currencyValue'}
+												{ItemWeightUnit}" />
+									<Text text="{path: 'ItemNetWeight',
+												formatter: '.formatter.currencyValue'}
+												{ItemWeightUnit}" />
+									<Text text="{path: 'PricingDate',
+												formatter: '.formatter.dateFormatter'
+									 }" />
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</IconTabFilter>
+				
+			</items>
+		</IconTabBar>
+
+		</semantic:content>
+		
+	</semantic:DetailPage>
+
+</mvc:View>

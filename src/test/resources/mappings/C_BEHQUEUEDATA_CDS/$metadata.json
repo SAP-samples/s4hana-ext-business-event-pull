@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/sap/opu/odata/sap/C_BEHQUEUEDATA_CDS/$metadata"
+    },
+    "response": {
+        "status": 200,
+        "bodyFileName": "C_BEHQUEUEDATA_CDS/$metadata.xml",
+        "headers": {
+            "Content-Type": "application/xml"
+        }
+    }
+}

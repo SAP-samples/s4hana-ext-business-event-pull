@@ -1,0 +1,235 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.sap.cldfnd</groupId>
+	<artifactId>behsampleapp</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>behsampleapp Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	
+	<properties>
+		<s4hana.sdk.version>2.0.0</s4hana.sdk.version>
+		<apache.cxf.version>3.1.14</apache.cxf.version>
+		<neo.sdk.api>3.44.5</neo.sdk.api>
+		<jackson.version>2.9.3</jackson.version>
+	</properties>
+
+	<dependencies>
+	
+		<!-- SAP S/4HANA Cloud SDK -->
+		<dependency>
+			<groupId>com.sap.cloud.s4hana</groupId>
+			<artifactId>datamodel</artifactId>
+			<version>${s4hana.sdk.version}</version>
+		</dependency>
+		
+		<!-- Java Web Tomcat 8 API -->
+		<dependency>
+			<groupId>com.sap.cloud</groupId>
+			<artifactId>neo-java-web-api</artifactId>
+			<version>${neo.sdk.api}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Implementation of the Cloud platform abstraction for core platform functionality on the SAP Cloud Platform (Neo). -->		
+		<dependency>
+			<groupId>com.sap.cloud.s4hana.cloudplatform</groupId>
+			<artifactId>scp-neo</artifactId>
+			<version>${s4hana.sdk.version}</version>
+		</dependency>
+		
+		<!-- JAX-RS Implementation (REST server) -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-integration-cdi</artifactId>
+			<version>${apache.cxf.version}</version>
+		</dependency>
+		
+		<!-- JSON Provider for CXF -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		
+		<!-- Enables CDI for Tomcat 8 server -->
+		<dependency>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet</artifactId>
+			<version>2.4.6.Final</version>
+		</dependency>
+		
+		<!-- test dependencies -->
+		
+		<!-- Test framework -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- Assertions with Fluent API -->
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>1.3</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- Stubbing S/4HANA -->
+		<dependency>
+			<groupId>com.github.tomakehurst</groupId>
+			<artifactId>wiremock</artifactId>
+			<version>2.10.1</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- Mocking SAP Cloud Platform specific objects: destinations, user, platform etc -->
+		<dependency>
+			<groupId>com.sap.cloud.s4hana</groupId>
+			<artifactId>testutil</artifactId>
+			<version>${s4hana.sdk.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- SLF4J Logger implementation for testing -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.25</version>
+			<scope>test</scope>
+		</dependency>
+		
+	</dependencies>
+	
+	<build>
+		<finalName>behsampleapp</finalName>
+		<plugins>
+		
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			
+			<!-- mandatory settings for S4HANA SDK -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Import-Package>com.sap.security.auth.service,com.sap.security.um.service.api</Import-Package>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		
+			<!-- run unit tests -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.20.1</version>
+				<configuration>
+					<reuseForks>false</reuseForks>
+					<forkCount>1</forkCount>
+					<!-- TODO uncomment the line below and add your proxy settings if you are behind a proxy
+					<argLine>-Dhttp.proxyHost=put.your.proxy.here -Dhttp.proxyPort=put.your.proxy.address.here -D$k=$v</argLine> -->   
+					<redirectTestOutputToFile>true</redirectTestOutputToFile>
+				</configuration>
+			</plugin>
+			
+			<!-- generate license files -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>1.14</version>
+				<configuration>
+					<inceptionYear>2018</inceptionYear>
+					<organizationName>SAP SE or an SAP affiliate company</organizationName>
+					<!-- add-third-party goal -->
+					<outputDirectory>.</outputDirectory>
+					<thirdPartyFilename>CREDITS</thirdPartyFilename>
+					<fileTemplate>./src/main/build/third-party-file.ftl</fileTemplate>
+					<sortArtifactByName>true</sortArtifactByName>
+					<!-- update-project-license goal -->
+					<licenseFile>LICENSE</licenseFile>
+					<licenseName>apache_v2</licenseName>
+				</configuration>
+				<executions>							
+					<execution>
+						<id>update-notice</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>update-project-license</goal>
+						</goals>
+						<configuration>
+							<licenseFile>NOTICE</licenseFile>
+							<licenseName>notice</licenseName>
+							<force>true</force>
+							<licenseResolver>${project.baseUri}src/main/build</licenseResolver>
+						</configuration>
+					</execution>
+					<execution>						
+						<id>update-project-license</id>
+						<goals>
+							<goal>update-project-license</goal>							
+						</goals>
+					</execution>
+					<execution>
+						<id>add-third-party</id>
+						<goals>
+							<goal>add-third-party</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+	</build>
+	
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- resolve conflict with outdated version which is a part of S/4HANA SDK -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore</artifactId>
+				<version>4.4.6</version>
+			</dependency>
+			
+			<!-- to avoid signature conflict when running on Java Web Tomcat 8 -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.6.4</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+</project>

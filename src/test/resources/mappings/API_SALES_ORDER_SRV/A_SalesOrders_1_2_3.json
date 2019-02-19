@@ -1,0 +1,360 @@
+{
+	"request": {
+		"method": "GET",
+		"urlPattern": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder(.*)ThreeElements123(.*)expand=to_Item(.*)"
+	},
+	"response": {
+		"status": 200,
+		"jsonBody": {
+				        "d":
+				        {
+				            "results":
+				            [
+				                {
+				                    "__metadata":
+				                    {
+				                        "id": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder('1')",
+				                        "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder('1')",
+				                        "type": "API_SALES_ORDER_SRV.A_SalesOrderType"
+				                    },
+				                    "SalesOrder": "1",
+				                    "SalesOrderType": "OR",
+				                    "SalesOrganization": "1710",
+				                    "DistributionChannel": "10",
+				                    "OrganizationDivision": "00",
+				                    "SalesGroup": "",
+				                    "SalesOffice": "",
+				                    "SalesDistrict": "",
+				                    "SoldToParty": "17401710",
+				                    "CreationDate": "/Date(1502928000000)/",
+				                    "CreatedByUser": "CB9980000113",
+				                    "LastChangeDate": "/Date(1506384000000)/",
+				                    "LastChangeDateTime": "/Date(1506415405079+0000)/",
+				                    "PurchaseOrderByCustomer": "new refsadf asdfsdfasdf",
+				                    "CustomerPurchaseOrderType": "",
+				                    "CustomerPurchaseOrderDate": "/Date(1502928000000)/",
+				                    "SalesOrderDate": "/Date(1502928000000)/",
+				                    "TotalNetAmount": "0.00",
+				                    "TransactionCurrency": "USD",
+				                    "SDDocumentReason": "",
+				                    "PricingDate": "/Date(1502928000000)/",
+				                    "RequestedDeliveryDate": "/Date(1502928000000)/",
+				                    "ShippingCondition": "01",
+				                    "CompleteDeliveryIsDefined": false,
+				                    "ShippingType": "",
+				                    "HeaderBillingBlockReason": "",
+				                    "DeliveryBlockReason": "",
+				                    "IncotermsClassification": "EXW",
+				                    "IncotermsTransferLocation": "Palo Alto",
+				                    "IncotermsLocation1": "Palo Alto",
+				                    "IncotermsLocation2": "",
+				                    "IncotermsVersion": "",
+				                    "CustomerPaymentTerms": "0001",
+				                    "PaymentMethod": "",
+				                    "OverallSDProcessStatus": "",
+				                    "TotalCreditCheckStatus": "",
+				                    "OverallTotalDeliveryStatus": "",
+				                    "OverallSDDocumentRejectionSts": "",
+				                    "to_Item":
+				                    {
+				                        "results":
+				                        [
+				                        ]
+				                    },
+				                    "to_Partner":
+				                    {
+				                        "__deferred":
+				                        {
+				                            "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder('1')/to_Partner"
+				                        }
+				                    },
+				                    "to_PricingElement":
+				                    {
+				                        "__deferred":
+				                        {
+				                            "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder('1')/to_PricingElement"
+				                        }
+				                    }
+				                },
+				                {
+				                    "__metadata":
+				                    {
+				                        "id": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder('2')",
+				                        "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder('2')",
+				                        "type": "API_SALES_ORDER_SRV.A_SalesOrderType"
+				                    },
+				                    "SalesOrder": "2",
+				                    "SalesOrderType": "OR",
+				                    "SalesOrganization": "1010",
+				                    "DistributionChannel": "10",
+				                    "OrganizationDivision": "00",
+				                    "SalesGroup": "",
+				                    "SalesOffice": "",
+				                    "SalesDistrict": "",
+				                    "SoldToParty": "10100001",
+				                    "CreationDate": "/Date(1502928000000)/",
+				                    "CreatedByUser": "CB9980000113",
+				                    "LastChangeDate": null,
+				                    "LastChangeDateTime": "/Date(1502970854600+0000)/",
+				                    "PurchaseOrderByCustomer": "JKS_Test1",
+				                    "CustomerPurchaseOrderType": "",
+				                    "CustomerPurchaseOrderDate": "/Date(1502841600000)/",
+				                    "SalesOrderDate": "/Date(1502928000000)/",
+				                    "TotalNetAmount": "35.10",
+				                    "TransactionCurrency": "EUR",
+				                    "SDDocumentReason": "",
+				                    "PricingDate": "/Date(1502928000000)/",
+				                    "RequestedDeliveryDate": "/Date(1502928000000)/",
+				                    "ShippingCondition": "01",
+				                    "CompleteDeliveryIsDefined": false,
+				                    "ShippingType": "",
+				                    "HeaderBillingBlockReason": "",
+				                    "DeliveryBlockReason": "",
+				                    "IncotermsClassification": "EXW",
+				                    "IncotermsTransferLocation": "Walldorf",
+				                    "IncotermsLocation1": "Walldorf",
+				                    "IncotermsLocation2": "",
+				                    "IncotermsVersion": "",
+				                    "CustomerPaymentTerms": "0004",
+				                    "PaymentMethod": "",
+				                    "OverallSDProcessStatus": "B",
+				                    "TotalCreditCheckStatus": "",
+				                    "OverallTotalDeliveryStatus": "B",
+				                    "OverallSDDocumentRejectionSts": "A",
+				                    "to_Item":
+				                    {
+				                        "results":
+				                        [
+				                            {
+				                                "__metadata":
+				                                {
+				                                    "id": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderItem(SalesOrder='2',SalesOrderItem='10')",
+				                                    "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderItem(SalesOrder='2',SalesOrderItem='10')",
+				                                    "type": "API_SALES_ORDER_SRV.A_SalesOrderItemType"
+				                                },
+				                                "SalesOrder": "2",
+				                                "SalesOrderItem": "10",
+				                                "HigherLevelItem": "0",
+				                                "SalesOrderItemCategory": "TAN",
+				                                "SalesOrderItemText": "Handelsware 20, Bestellpunkt, Serialnr.",
+				                                "PurchaseOrderByCustomer": "JKS_Test1",
+				                                "Material": "TG20",
+				                                "MaterialByCustomer": "",
+				                                "PricingDate": "/Date(1502928000000)/",
+				                                "RequestedQuantity": "2",
+				                                "RequestedQuantityUnit": "PC",
+				                                "ItemGrossWeight": "2.000",
+				                                "ItemNetWeight": "200.000",
+				                                "ItemWeightUnit": "KG",
+				                                "ItemVolume": "2.000",
+				                                "ItemVolumeUnit": "M3",
+				                                "TransactionCurrency": "EUR",
+				                                "NetAmount": "35.10",
+				                                "MaterialGroup": "L001",
+				                                "Batch": "",
+				                                "ProductionPlant": "1010",
+				                                "StorageLocation": "",
+				                                "ShippingPoint": "1010",
+				                                "ShippingType": "",
+				                                "DeliveryPriority": "0",
+				                                "IncotermsClassification": "EXW",
+				                                "IncotermsTransferLocation": "Walldorf",
+				                                "IncotermsLocation1": "Walldorf",
+				                                "IncotermsLocation2": "",
+				                                "CustomerPaymentTerms": "0004",
+				                                "SalesDocumentRjcnReason": "",
+				                                "ItemBillingBlockReason": "",
+				                                "SDProcessStatus": "B",
+				                                "DeliveryStatus": "B",
+				                                "OrderRelatedBillingStatus": "",
+				                                "to_Partner":
+				                                {
+				                                    "__deferred":
+				                                    {
+				                                        "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderItem(SalesOrder='2',SalesOrderItem='10')/to_Partner"
+				                                    }
+				                                },
+				                                "to_PricingElement":
+				                                {
+				                                    "__deferred":
+				                                    {
+				                                        "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderItem(SalesOrder='2',SalesOrderItem='10')/to_PricingElement"
+				                                    }
+				                                },
+				                                "to_SalesOrder":
+				                                {
+				                                    "__deferred":
+				                                    {
+				                                        "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderItem(SalesOrder='2',SalesOrderItem='10')/to_SalesOrder"
+				                                    }
+				                                },
+				                                "to_ScheduleLine":
+				                                {
+				                                    "__deferred":
+				                                    {
+				                                        "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderItem(SalesOrder='2',SalesOrderItem='10')/to_ScheduleLine"
+				                                    }
+				                                }
+				                            }
+				                        ]
+				                    },
+				                    "to_Partner":
+				                    {
+				                        "__deferred":
+				                        {
+				                            "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder('2')/to_Partner"
+				                        }
+				                    },
+				                    "to_PricingElement":
+				                    {
+				                        "__deferred":
+				                        {
+				                            "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder('2')/to_PricingElement"
+				                        }
+				                    }
+				                },
+				                {
+				                    "__metadata":
+				                    {
+				                        "id": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder('3')",
+				                        "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder('3')",
+				                        "type": "API_SALES_ORDER_SRV.A_SalesOrderType"
+				                    },
+				                    "SalesOrder": "3",
+				                    "SalesOrderType": "OR",
+				                    "SalesOrganization": "1710",
+				                    "DistributionChannel": "10",
+				                    "OrganizationDivision": "00",
+				                    "SalesGroup": "",
+				                    "SalesOffice": "",
+				                    "SalesDistrict": "",
+				                    "SoldToParty": "17100003",
+				                    "CreationDate": "/Date(1502928000000)/",
+				                    "CreatedByUser": "CB9980000113",
+				                    "LastChangeDate": null,
+				                    "LastChangeDateTime": "/Date(1502991626380+0000)/",
+				                    "PurchaseOrderByCustomer": "1ZQ_SO_01",
+				                    "CustomerPurchaseOrderType": "",
+				                    "CustomerPurchaseOrderDate": null,
+				                    "SalesOrderDate": "/Date(1502928000000)/",
+				                    "TotalNetAmount": "17.55",
+				                    "TransactionCurrency": "USD",
+				                    "SDDocumentReason": "",
+				                    "PricingDate": "/Date(1502928000000)/",
+				                    "RequestedDeliveryDate": "/Date(1502928000000)/",
+				                    "ShippingCondition": "01",
+				                    "CompleteDeliveryIsDefined": false,
+				                    "ShippingType": "",
+				                    "HeaderBillingBlockReason": "",
+				                    "DeliveryBlockReason": "",
+				                    "IncotermsClassification": "EXW",
+				                    "IncotermsTransferLocation": "Palo Alto",
+				                    "IncotermsLocation1": "Palo Alto",
+				                    "IncotermsLocation2": "",
+				                    "IncotermsVersion": "",
+				                    "CustomerPaymentTerms": "0004",
+				                    "PaymentMethod": "",
+				                    "OverallSDProcessStatus": "A",
+				                    "TotalCreditCheckStatus": "",
+				                    "OverallTotalDeliveryStatus": "A",
+				                    "OverallSDDocumentRejectionSts": "A",
+				                    "to_Item":
+				                    {
+				                        "results":
+				                        [
+				                            {
+				                                "__metadata":
+				                                {
+				                                    "id": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderItem(SalesOrder='3',SalesOrderItem='10')",
+				                                    "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderItem(SalesOrder='3',SalesOrderItem='10')",
+				                                    "type": "API_SALES_ORDER_SRV.A_SalesOrderItemType"
+				                                },
+				                                "SalesOrder": "3",
+				                                "SalesOrderItem": "10",
+				                                "HigherLevelItem": "0",
+				                                "SalesOrderItemCategory": "TAN",
+				                                "SalesOrderItemText": "Trad.Good 11,PD,Reg.Trading",
+				                                "PurchaseOrderByCustomer": "1ZQ_SO_01",
+				                                "Material": "TG11",
+				                                "MaterialByCustomer": "",
+				                                "PricingDate": "/Date(1502928000000)/",
+				                                "RequestedQuantity": "1",
+				                                "RequestedQuantityUnit": "PC",
+				                                "ItemGrossWeight": "1.000",
+				                                "ItemNetWeight": "100.000",
+				                                "ItemWeightUnit": "KG",
+				                                "ItemVolume": "1.000",
+				                                "ItemVolumeUnit": "M3",
+				                                "TransactionCurrency": "USD",
+				                                "NetAmount": "17.55",
+				                                "MaterialGroup": "L001",
+				                                "Batch": "",
+				                                "ProductionPlant": "1710",
+				                                "StorageLocation": "",
+				                                "ShippingPoint": "1710",
+				                                "ShippingType": "",
+				                                "DeliveryPriority": "2",
+				                                "IncotermsClassification": "EXW",
+				                                "IncotermsTransferLocation": "Palo Alto",
+				                                "IncotermsLocation1": "Palo Alto",
+				                                "IncotermsLocation2": "",
+				                                "CustomerPaymentTerms": "0004",
+				                                "SalesDocumentRjcnReason": "",
+				                                "ItemBillingBlockReason": "",
+				                                "SDProcessStatus": "A",
+				                                "DeliveryStatus": "A",
+				                                "OrderRelatedBillingStatus": "",
+				                                "to_Partner":
+				                                {
+				                                    "__deferred":
+				                                    {
+				                                        "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderItem(SalesOrder='3',SalesOrderItem='10')/to_Partner"
+				                                    }
+				                                },
+				                                "to_PricingElement":
+				                                {
+				                                    "__deferred":
+				                                    {
+				                                        "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderItem(SalesOrder='3',SalesOrderItem='10')/to_PricingElement"
+				                                    }
+				                                },
+				                                "to_SalesOrder":
+				                                {
+				                                    "__deferred":
+				                                    {
+				                                        "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderItem(SalesOrder='3',SalesOrderItem='10')/to_SalesOrder"
+				                                    }
+				                                },
+				                                "to_ScheduleLine":
+				                                {
+				                                    "__deferred":
+				                                    {
+				                                        "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderItem(SalesOrder='3',SalesOrderItem='10')/to_ScheduleLine"
+				                                    }
+				                                }
+				                            }
+				                        ]
+				                    },
+				                    "to_Partner":
+				                    {
+				                        "__deferred":
+				                        {
+				                            "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder('3')/to_Partner"
+				                        }
+				                    },
+				                    "to_PricingElement":
+				                    {
+				                        "__deferred":
+				                        {
+				                            "uri": "https://myDummySys.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder('3')/to_PricingElement"
+				                        }
+				                    }
+				                }
+				            ]
+				        }
+				    },
+		"headers": {
+			"Content-Type": "application/json"
+		}
+	}
+}

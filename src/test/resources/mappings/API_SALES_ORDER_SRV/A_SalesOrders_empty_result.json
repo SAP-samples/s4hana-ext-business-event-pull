@@ -1,0 +1,13 @@
+{
+	"request": {
+		"method": "GET",
+		"urlPattern": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder(.*)FilterNotFound(.*)"
+	},
+	"response": {
+		"status": 200,
+		"bodyFileName": "ODataEmptyResult.json",
+		"headers": {
+			"Content-Type": "application/json"
+		}
+	}
+}

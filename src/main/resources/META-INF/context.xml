@@ -1,0 +1,7 @@
+<!-- enables CDI injection for Tomcat server using Weld -->
+<Context>
+    <Resource name="BeanManager" 
+        auth="Container"
+        type="javax.enterprise.inject.spi.BeanManager"
+        factory="org.jboss.weld.resources.ManagerObjectFactory"/>
+</Context>

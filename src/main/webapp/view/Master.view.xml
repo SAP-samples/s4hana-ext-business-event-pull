@@ -1,0 +1,85 @@
+<mvc:View
+	controllerName="behsample.controller.Master"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:semantic="sap.m.semantic">
+
+	<semantic:MasterPage
+		id="page"
+		title="{masterView>/title}"
+		navButtonPress="onNavBack"
+		showNavButton="false">
+		<semantic:subHeader>
+			<Bar id="headerBar">
+				<contentMiddle>
+					<SearchField
+						id="searchField"
+						showRefreshButton="{= !${device>/support/touch} }"
+						tooltip="{i18n>masterSearchTooltip}"
+						width="100%"
+						search="onSearch">
+					</SearchField>
+				</contentMiddle>
+			</Bar>
+		</semantic:subHeader>
+
+		<semantic:content>
+			<!-- For client side filtering add this to the items attribute:  parameters: {operationMode: 'Client'}}" -->
+			<List
+				id="list"
+				items="{
+					path: '/results/',
+					sorter: {
+						path: 'BusinessEvent/SAPBusinessObjectKey1',
+						descending: false
+						},
+					groupHeaderFactory: '.createGroupHeader'
+				}"
+				busyIndicatorDelay="{masterView>/delay}"
+				noDataText="{masterView>/noDataText}"
+				mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
+				growing="true"
+				growingScrollToLoad="true"
+				updateFinished="onUpdateFinished"
+				selectionChange="onSelectionChange">
+				<infoToolbar>
+					<Toolbar
+						active="true"
+						id="filterBar"
+						visible="{masterView>/isFilterBarVisible}"
+						press="onOpenViewSettings">
+						<Title
+							id="filterBarLabel"
+							text="{masterView>/filterBarLabel}" />
+					</Toolbar>
+				</infoToolbar>
+				<items>
+					<ObjectListItem
+						type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}"
+						press="onSelectionChange"
+						title="{BusinessEvent/SAPObjectTaskTypeName}"
+						number="{
+							path: 'BusinessEvent/SAPBusinessObjectKey1',
+							formatter: '.formatter.numberFormatter'
+						}">
+						<attributes>
+							<ObjectAttribute text="{BusinessEvent/BusinessEventSubscriberName}" />
+							<ObjectAttribute text="{
+								path: 'BusinessEvent/CreationUTCDateTime',
+								type: 'sap.ui.model.type.DateTime',
+								formatOptions: {
+									source: {
+										pattern: 'yyyyMMddHHmmss'
+								    },
+									style: 'short'
+								}}" />
+						</attributes>
+					</ObjectListItem>
+				</items>
+			</List>
+		</semantic:content>
+
+	</semantic:MasterPage>
+
+</mvc:View>

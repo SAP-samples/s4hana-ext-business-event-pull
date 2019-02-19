@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/$metadata"
+    },
+    "response": {
+        "status": 200,
+        "bodyFileName": "API_SALES_ORDER_SRV/$metadata.xml",
+        "headers": {
+            "Content-Type": "application/xml"
+        }
+    }
+}

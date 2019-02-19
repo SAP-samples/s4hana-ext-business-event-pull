@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://127.0.0.1:31337/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="C_BEHQUEUEDATA_CDS" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="C_BehqueuedataType" sap:label="BEH Outbound Queue Data" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="BusinessEvent"/>
+                </Key>
+                <Property Name="BusinessEvent" Type="Edm.Guid" Nullable="false" sap:label="ObjectGUID" sap:quickinfo="GUID of an Event"/>
+                <Property Name="SAPObjectTaskTypeName" Type="Edm.String" MaxLength="40" sap:label="Obj Task Type Name" sap:quickinfo="SAP Object Task Type Name"/>
+                <Property Name="SAPObjectTypeName" Type="Edm.String" MaxLength="40" sap:label="SAP Object Type Name"/>
+                <Property Name="SAPObjectType" Type="Edm.String" MaxLength="30" sap:label="SAP Object Type"/>
+                <Property Name="BusEventSubscriberCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Subscriber ID"/>
+                <Property Name="SAPObjectTaskCode" Type="Edm.String" MaxLength="18" sap:label="SAP Object Task Code"/>
+                <Property Name="BusinessEventSubscriberName" Type="Edm.String" MaxLength="32" sap:label="Subscriber Name"/>
+                <Property Name="SAPBusinessObjectKey1" Type="Edm.String" MaxLength="40" sap:label="Bus Obj Id (1)" sap:quickinfo="Business Object Key1"/>
+                <Property Name="SAPBusinessObjectKey2" Type="Edm.String" MaxLength="40" sap:label="Bus Obj Id (2)" sap:quickinfo="Business Object Key2"/>
+                <Property Name="SAPBusinessObjectKey3" Type="Edm.String" MaxLength="40" sap:label="Bus Obj Id (3)" sap:quickinfo="Business Object key3"/>
+                <Property Name="SAPBusinessObjectKey4" Type="Edm.String" MaxLength="40" sap:label="Bus Obj Id (4)" sap:quickinfo="Business Object key4"/>
+                <Property Name="SAPBusinessObjectKey5" Type="Edm.String" MaxLength="40" sap:label="Bus Obj Id (5)" sap:quickinfo="Business Object Key5"/>
+                <Property Name="SAPBusinessObjectKey6" Type="Edm.String" MaxLength="40" sap:label="Bus Obj Id (6)" sap:quickinfo="Business Object Key6"/>
+                <Property Name="BusEventPriority" Type="Edm.Byte" sap:label="Priority" sap:quickinfo="Subscription priority"/>
+                <Property Name="CreationUTCDateTime" Type="Edm.Decimal" Precision="15" Scale="0" sap:label="Time Stamp" sap:quickinfo="UTC Time Stamp in Short Form (YYYYMMDDhhmmss)"/>
+                <NavigationProperty Name="to_BusObjects" Relationship="C_BEHQUEUEDATA_CDS.assoc_8530036079576049D0CD32D24CF59814" FromRole="FromRole_assoc_8530036079576049D0CD32D24CF59814" ToRole="ToRole_assoc_8530036079576049D0CD32D24CF59814"/>
+                <NavigationProperty Name="to_Keys" Relationship="C_BEHQUEUEDATA_CDS.assoc_C842E20A7079B1A4FCE0FE38FB37BAEA" FromRole="FromRole_assoc_C842E20A7079B1A4FCE0FE38FB37BAEA" ToRole="ToRole_assoc_C842E20A7079B1A4FCE0FE38FB37BAEA"/>
+            </EntityType>
+            <EntityType Name="I_BusinessObjectKeysType" sap:label="Business Object Keys Definition" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SAPObjectType"/>
+                </Key>
+                <Property Name="SAPObjectType" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="SAP Object Type"/>
+                <Property Name="KeyFieldName1" Type="Edm.String" MaxLength="40" sap:label="Bus Obj Key 1" sap:quickinfo="Business Object Key1"/>
+                <Property Name="KeyFieldName2" Type="Edm.String" MaxLength="40" sap:label="Bus Obj Key 2" sap:quickinfo="Business Object Key2"/>
+                <Property Name="KeyFieldName3" Type="Edm.String" MaxLength="40" sap:label="Bus Obj Key 3" sap:quickinfo="Business Object Key3"/>
+                <Property Name="KeyFieldName4" Type="Edm.String" MaxLength="40" sap:label="Bus Obj Key 4" sap:quickinfo="Business Object Key4"/>
+                <Property Name="KeyFieldName5" Type="Edm.String" MaxLength="40" sap:label="Bus Obj Key 5" sap:quickinfo="Business Object Key5"/>
+                <Property Name="KeyFieldName6" Type="Edm.String" MaxLength="40" sap:label="Bus Obj Key 6" sap:quickinfo="Business Object Key6"/>
+            </EntityType>
+            <EntityType Name="I_BusObjectsType" sap:label="SAP Business Objects" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SAPObjectType"/>
+                    <PropertyRef Name="SAPObjectTypeName"/>
+                    <PropertyRef Name="SAPObjectTaskCode"/>
+                    <PropertyRef Name="SAPObjectTaskTypeName"/>
+                </Key>
+                <Property Name="SAPObjectType" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="SAP Object Type"/>
+                <Property Name="SAPObjectTypeName" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="SAP Object Type Name"/>
+                <Property Name="SAPObjectTaskCode" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="SAP Object Task Code"/>
+                <Property Name="SAPObjectTaskTypeName" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Obj Task Type Name" sap:quickinfo="SAP Object Task Type Name"/>
+            </EntityType>
+            <Association Name="assoc_C842E20A7079B1A4FCE0FE38FB37BAEA" sap:content-version="1">
+                <End Type="C_BEHQUEUEDATA_CDS.C_BehqueuedataType" Multiplicity="1" Role="FromRole_assoc_C842E20A7079B1A4FCE0FE38FB37BAEA"/>
+                <End Type="C_BEHQUEUEDATA_CDS.I_BusinessObjectKeysType" Multiplicity="1" Role="ToRole_assoc_C842E20A7079B1A4FCE0FE38FB37BAEA"/>
+            </Association>
+            <Association Name="assoc_8530036079576049D0CD32D24CF59814" sap:content-version="1">
+                <End Type="C_BEHQUEUEDATA_CDS.C_BehqueuedataType" Multiplicity="1" Role="FromRole_assoc_8530036079576049D0CD32D24CF59814"/>
+                <End Type="C_BEHQUEUEDATA_CDS.I_BusObjectsType" Multiplicity="*" Role="ToRole_assoc_8530036079576049D0CD32D24CF59814"/>
+            </Association>
+            <EntityContainer Name="C_BEHQUEUEDATA_CDS_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="C_Behqueuedata" EntityType="C_BEHQUEUEDATA_CDS.C_BehqueuedataType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="I_BusinessObjectKeys" EntityType="C_BEHQUEUEDATA_CDS.I_BusinessObjectKeysType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="I_BusObjects" EntityType="C_BEHQUEUEDATA_CDS.I_BusObjectsType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_8530036079576049D0CD32D24CF59814" Association="C_BEHQUEUEDATA_CDS.assoc_8530036079576049D0CD32D24CF59814" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="C_Behqueuedata" Role="FromRole_assoc_8530036079576049D0CD32D24CF59814"/>
+                    <End EntitySet="I_BusObjects" Role="ToRole_assoc_8530036079576049D0CD32D24CF59814"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_C842E20A7079B1A4FCE0FE38FB37BAEA" Association="C_BEHQUEUEDATA_CDS.assoc_C842E20A7079B1A4FCE0FE38FB37BAEA" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="C_Behqueuedata" Role="FromRole_assoc_C842E20A7079B1A4FCE0FE38FB37BAEA"/>
+                    <End EntitySet="I_BusinessObjectKeys" Role="ToRole_assoc_C842E20A7079B1A4FCE0FE38FB37BAEA"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="https://127.0.0.1:31337/sap/opu/odata/sap/C_BEHQUEUEDATA_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://127.0.0.1:31337/sap/opu/odata/sap/C_BEHQUEUEDATA_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

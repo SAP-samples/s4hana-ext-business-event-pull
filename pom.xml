@@ -10,64 +10,84 @@
 	<url>http://maven.apache.org</url>
 	
 	<properties>
-		<s4hana.sdk.version>2.0.0</s4hana.sdk.version>
-		<apache.cxf.version>3.1.14</apache.cxf.version>
-		<neo.sdk.api>3.44.5</neo.sdk.api>
-		<jackson.version>2.9.3</jackson.version>
+		<maven.license.version>1.17</maven.license.version>
+		<!-- TODO place your proxy settings here to run tests from Maven -->
+		<vmArguments>-Dhttp.proxyHost= -Dhttp.proxyPort= -D$k=$v</vmArguments>
 	</properties>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.sap.cloud.s4hana</groupId>
+				<artifactId>sdk-bom</artifactId>
+				<version>2.12.0</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
 	<dependencies>
 	
-		<!-- SAP S/4HANA Cloud SDK -->
+		<!-- Call S/4HANA OData APIs in a type-safe manner -->
 		<dependency>
 			<groupId>com.sap.cloud.s4hana</groupId>
 			<artifactId>datamodel</artifactId>
-			<version>${s4hana.sdk.version}</version>
 		</dependency>
 		
-		<!-- Java Web Tomcat 8 API -->
+		<!-- API of Java EE 7 Web Profile TomEE 7 from SAP Cloud Platform -->
 		<dependency>
 			<groupId>com.sap.cloud</groupId>
-			<artifactId>neo-java-web-api</artifactId>
-			<version>${neo.sdk.api}</version>
+			<artifactId>neo-javaee7-wp-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Implementation of the Cloud platform abstraction for core platform functionality on the SAP Cloud Platform (Neo). -->		
+		<!-- Implementation of the Cloud platform abstraction for core platform functionality on the SAP Cloud Platform (Neo) -->		
 		<dependency>
 			<groupId>com.sap.cloud.s4hana.cloudplatform</groupId>
 			<artifactId>scp-neo</artifactId>
-			<version>${s4hana.sdk.version}</version>
-		</dependency>
-		
-		<!-- JAX-RS Implementation (REST server) -->
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-integration-cdi</artifactId>
-			<version>${apache.cxf.version}</version>
 		</dependency>
 		
 		<!-- JSON Provider for CXF -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.jaxrs</groupId>
 			<artifactId>jackson-jaxrs-json-provider</artifactId>
-			<version>${jackson.version}</version>
 		</dependency>
 		
-		<!-- Enables CDI for Tomcat 8 server -->
+		<!-- JSON serializer -->
 		<dependency>
-			<groupId>org.jboss.weld.servlet</groupId>
-			<artifactId>weld-servlet</artifactId>
-			<version>2.4.6.Final</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
 		</dependency>
 		
+		<!-- Logging facade used by SAP Cloud Platform -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Boilerplate code generator -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 		<!-- test dependencies -->
 		
-		<!-- Test framework -->
+		<!-- JUnit 4 test framework -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 		
@@ -79,11 +99,10 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- Stubbing S/4HANA -->
+		<!-- Local mock server to stub responses of S/4HANA APIs -->
 		<dependency>
 			<groupId>com.github.tomakehurst</groupId>
 			<artifactId>wiremock</artifactId>
-			<version>2.10.1</version>
 			<scope>test</scope>
 		</dependency>
 		
@@ -91,7 +110,6 @@
 		<dependency>
 			<groupId>com.sap.cloud.s4hana</groupId>
 			<artifactId>testutil</artifactId>
-			<version>${s4hana.sdk.version}</version>
 			<scope>test</scope>
 		</dependency>
 		
@@ -99,10 +117,66 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.25</version>
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- Test REST services -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- assert JSON objects equality -->
+		<dependency>
+			<groupId>uk.co.datumedge</groupId>
+			<artifactId>hamcrest-json</artifactId>
+			<version>0.2</version>
+			<scope>test</scope>
+		</dependency>
+		
+
+		<!-- Integration testing framework -->
+		<dependency>
+			<groupId>org.apache.tomee</groupId>
+			<artifactId>arquillian-tomee-embedded</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomee</groupId>
+			<artifactId>tomee-embedded</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-jdk14</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- Java server for running integration tests -->
+		<dependency>
+			<groupId>org.apache.tomee</groupId>
+			<artifactId>tomee-jaxrs</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.el</groupId>
+			<artifactId>el-ri</artifactId>
+			<version>1.0</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 	
 	<build>
@@ -137,99 +211,170 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.20.1</version>
+				<version>2.22.1</version>
 				<configuration>
 					<reuseForks>false</reuseForks>
 					<forkCount>1</forkCount>
-					<!-- TODO uncomment the line below and add your proxy settings if you are behind a proxy
-					<argLine>-Dhttp.proxyHost=put.your.proxy.here -Dhttp.proxyPort=put.your.proxy.address.here -D$k=$v</argLine> -->   
+					<argLine>${surefireArgLine} ${vmArguments} </argLine>   
 					<redirectTestOutputToFile>true</redirectTestOutputToFile>
 				</configuration>
+			</plugin>
+			
+			<!-- run integration tests -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.22.1</version>
+				<configuration>
+					<argLine>${failsafe.argLine} ${vmArguments} </argLine>
+				</configuration>
+				<executions>
+					<execution>
+						<id>integration-test</id>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<!-- measure code coverage -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.3</version>
+				<executions>
+					<execution>
+						<id>default-prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>                
+                			<propertyName>surefireArgLine</propertyName>
+            			</configuration>
+					</execution>
+					<execution>
+						<id>pre-unit-test</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+							<destFile>${project.build.directory}/coverage-reports/jacoco-unit.exec</destFile>
+							<propertyName>surefireArgLine</propertyName>
+						</configuration>
+					</execution>
+					<execution>
+			            <id>pre-integration-test</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+							<destFile>${project.build.directory}/coverage-reports/jacoco-it.exec</destFile>
+							<propertyName>failsafe.argLine</propertyName>
+						</configuration>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<dataFile>${project.build.directory}/coverage-reports/jacoco-unit.exec</dataFile>
+							<outputDirectory>${project.reporting.outputDirectory}/jacoco-unit</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>post-integration-test</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
+							<outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>merge-results</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>merge</goal>
+						</goals>
+						<configuration>
+							<fileSets>
+								<fileSet>
+									<directory>${project.build.directory}/coverage-reports</directory>
+									<includes>
+										<include>*.exec</include>
+									</includes>
+								</fileSet>
+							</fileSets>
+							<destFile>${project.build.directory}/coverage-reports/jacoco-aggregate.exec</destFile>
+						</configuration>
+					</execution>
+					<execution>
+						<id>post-merge-report</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<dataFile>${project.build.directory}/coverage-reports/jacoco-aggregate.exec</dataFile>
+							<outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			
 			<!-- generate license files -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>license-maven-plugin</artifactId>
-				<version>1.14</version>
-				<configuration>
-					<inceptionYear>2018</inceptionYear>
-					<organizationName>SAP SE or an SAP affiliate company</organizationName>
-					<!-- add-third-party goal -->
-					<outputDirectory>.</outputDirectory>
-					<thirdPartyFilename>CREDITS</thirdPartyFilename>
-					<fileTemplate>./src/main/build/third-party-file.ftl</fileTemplate>
-					<sortArtifactByName>true</sortArtifactByName>
-					<!-- update-project-license goal -->
-					<licenseFile>LICENSE</licenseFile>
-					<licenseName>apache_v2</licenseName>
-				</configuration>
-				<executions>							
+				<version>${maven.license.version}</version>
+				
+				<executions>
+					<!-- NOTICE file -->
 					<execution>
 						<id>update-notice</id>
-						<phase>generate-resources</phase>
 						<goals>
 							<goal>update-project-license</goal>
 						</goals>
 						<configuration>
-							<licenseFile>NOTICE</licenseFile>
-							<licenseName>notice</licenseName>
 							<force>true</force>
+							<licenseFile>NOTICE</licenseFile>
 							<licenseResolver>${project.baseUri}src/main/build</licenseResolver>
+							<licenseName>notice</licenseName>
+							<inceptionYear>2019</inceptionYear>
+							<organizationName>SAP SE or an SAP affiliate company</organizationName>
 						</configuration>
 					</execution>
-					<execution>						
-						<id>update-project-license</id>
-						<goals>
-							<goal>update-project-license</goal>							
-						</goals>
-					</execution>
+					
+					<!-- CREDITS file -->
 					<execution>
 						<id>add-third-party</id>
 						<goals>
 							<goal>add-third-party</goal>
 						</goals>
+						<configuration>
+							<outputDirectory>.</outputDirectory>
+							<thirdPartyFilename>CREDITS</thirdPartyFilename>
+							<fileTemplate>./src/main/build/third-party-file.ftl</fileTemplate>
+							<sortArtifactByName>true</sortArtifactByName>
+							<excludeTransitiveDependencies>true</excludeTransitiveDependencies>
+							<includeTransitiveDependencies>false</includeTransitiveDependencies>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-			
+
 		</plugins>
 	</build>
-	
-	<dependencyManagement>
-		<dependencies>
-
-			<!-- resolve conflict with outdated version which is a part of S/4HANA SDK -->
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpcore</artifactId>
-				<version>4.4.6</version>
-			</dependency>
-			
-			<!-- to avoid signature conflict when running on Java Web Tomcat 8 -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>1.6.4</version>
-				<scope>provided</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-databind</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-annotations</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-core</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-	
 </project>

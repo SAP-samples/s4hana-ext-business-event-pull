@@ -36,11 +36,7 @@
     <#return result>
 </#function>
 <#function artifactFormat p>
-    <#if p.name?index_of('Unnamed') &gt; -1 || p.name == 'null'>
-        <#return p.artifactId + " (" + p.groupId + ":" + p.artifactId + ":" + p.version + " - " + (p.url!"no url defined") + ")">
-    <#else>
-        <#return p.name + " (" + (p.url!"no url defined") + ")">
-    </#if>
+	<#return p.name + " (" + p.groupId + ":" + p.artifactId + ":" + p.version + " - " + (p.url!"no url defined") + ")">    
 </#function>
 <#if dependencyMap?size == 0>
 The project has no dependencies.

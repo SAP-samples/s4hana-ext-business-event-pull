@@ -1,7 +1,7 @@
 {
 	"request": {
 		"method": "GET",
-		"urlPattern": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder(.*)ThreeElements123(.*)expand=to_Item(.*)"
+		"url": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder?$filter=((SalesOrder%20eq%20'165')%20or%20(SalesOrder%20eq%20'166'))%20or%20(SalesOrder%20eq%20'164')&$select=*,to_Item/*&$expand=to_Item&$format=json"
 	},
 	"response": {
 		"status": 200,
@@ -214,7 +214,7 @@
 									"SalesOrderItem": "10",
 									"HigherLevelItem": "0",
 									"SalesOrderItemCategory": "TAN",
-									"SalesOrderItemText": "QM - Regular",
+									"SalesOrderItemText": "QM - Regulär",
 									"PurchaseOrderByCustomer": "",
 									"Material": "QM001",
 									"MaterialByCustomer": "",

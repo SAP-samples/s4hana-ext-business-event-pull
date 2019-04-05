@@ -44,7 +44,12 @@ public class JsonProviderTest {
 			
 			@SuppressWarnings("unused")
 			public String getJAVABeanNaming() {
-				return jAVABeanNaming;
+				throw new IllegalStateException("The method must NOT be called during serialization");
+			}
+			
+			@SuppressWarnings("unused")
+			public String getNotExistingProperty() {
+				throw new IllegalStateException("The method must NOT be called during serialization");
 			}
 		}
 		

@@ -50,7 +50,7 @@ public class BusinessEventServiceTest extends GenericServiceTest {
 	public void testGetUpdatedSalesOrders() throws ODataException {
 		final List<Behqueuedata> salesOrderEvents = getBusinessEventService().getSalesOrderEvents();
 
-		assertThat(salesOrderEvents, hasSize(2));
+		assertThat(salesOrderEvents, hasSize(3));
 	}
 
 	@Test

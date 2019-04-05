@@ -21,10 +21,6 @@ public class TopResults<T> {
 		return limited;
 	}
 
-	public void setLimited(boolean limited) {
-		this.limited = limited;
-	}
-
 	/**
 	 * @return limited number of results
 	 * @see TopResults#getTotalCount()
@@ -33,10 +29,6 @@ public class TopResults<T> {
 		return results;
 	}
 
-	public void setResults(List<T> results) {
-		this.results = results;
-	}
-	
 	public static <T> TopResults<T> of(List<T> results, boolean limited) {
 		 return new TopResults<>(results, limited);
 	}

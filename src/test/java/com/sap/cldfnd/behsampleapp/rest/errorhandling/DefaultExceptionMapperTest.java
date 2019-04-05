@@ -5,23 +5,18 @@ import static org.hamcrest.Matchers.*;
 
 import java.io.IOException;
 
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sap.cldfnd.behsampleapp.rest.JsonProvider;
-import com.sap.cldfnd.behsampleapp.rest.errorhandling.ErrorResponse.ErrorMessage;
 import com.sap.cloud.sdk.odatav2.connectivity.ODataException;
 import com.sap.cloud.sdk.odatav2.connectivity.ODataExceptionType;
 
-public class ODataExceptionMapperTest {
-	
-	ODataExceptionMapper testee = new ODataExceptionMapper();
+public class DefaultExceptionMapperTest {
+
+	DefaultExceptionMapper testee = new DefaultExceptionMapper();
 	
 	@Test
 	public void testToResponseUnwrappedWithNullCause() throws JsonParseException, JsonMappingException, IOException {
@@ -35,7 +30,8 @@ public class ODataExceptionMapperTest {
 		final Response response = testee.toResponse(exception);
 		
 		// Then
-		assertResponse(response, 405, exception);
+		assertErrorResponse(response, 405, exception);
+
 	}
 	
 	@Test
@@ -50,7 +46,7 @@ public class ODataExceptionMapperTest {
 		final Response response = testee.toResponse(exception);
 		
 		// Then 
-		assertResponse(response, 405, exception);
+		assertErrorResponse(response, 405, exception);
 	}
 	
 	@Test
@@ -70,19 +66,22 @@ public class ODataExceptionMapperTest {
 		final Response response = testee.toResponse(exception);
 		
 		// Then
-		assertResponse(response, 503, cause);
+		assertErrorResponse(response, 503, exception);
 	}
 
-	public void assertResponse(final Response response, final int expectedStatusCode, final ODataException exception) throws JsonParseException, JsonMappingException, IOException {
+	private void assertErrorResponse(final Response response, final int expectedStatusCode, Throwable exception) throws JsonParseException, JsonMappingException, IOException {
 		assertThat("response code", response.getStatus(), is(expectedStatusCode));
 		
-		final ObjectMapper om = new JsonProvider().locateMapper(ErrorMessage.class, MediaType.APPLICATION_JSON_TYPE);
-		final ErrorResponse errorEntity = om
-				.enable(DeserializationFeature.UNWRAP_ROOT_VALUE)
-				.readValue(response.getEntity().toString(), ErrorResponse.class);
+		assertThat("response entity type", response.getEntity(), is(instanceOf(ErrorResponse.class)));
+		ErrorResponse errorEntity = (ErrorResponse) response.getEntity();
 		
-		assertThat("error response's message", errorEntity.getMessageText(), is(exception.getMessage()));
-		assertThat("error response's code", errorEntity.getCode(), is(exception.getCode()));
+		while (exception != null) {
+			assertThat("error response / innen error was null while there was an exception / cause", errorEntity != null);
+			assertThat("error response's message", errorEntity.getMessage().getValue(), is(exception.getMessage()));
+			assertThat("error response's code", errorEntity.getCode(), is(exception.getClass().getSimpleName()));
+			exception = exception.getCause();
+			errorEntity = errorEntity.getInnerError();
+		}
 	}
 	
 	@Test
@@ -92,10 +91,10 @@ public class ODataExceptionMapperTest {
 		exception.setCode("404");
 		
 		// When
-		final int httpStatusCode = ODataExceptionMapper.getHttpStatusCode(exception);
+		final int httpStatusCode = DefaultExceptionMapper.getHttpStatusCode(exception);
 		
 		// Then
-		assertThat("ODataExceptionMapper.getHttpStatusCode", httpStatusCode, is(404));
+		assertThat("DefaultExceptionMapper.getHttpStatusCode()", httpStatusCode, is(404));
 	}
 	
 	@Test
@@ -105,10 +104,10 @@ public class ODataExceptionMapperTest {
 		exception.setCode("1000");
 		
 		// When
-		final int httpStatusCode = ODataExceptionMapper.getHttpStatusCode(exception);
+		final int httpStatusCode = DefaultExceptionMapper.getHttpStatusCode(exception);
 		
 		// Then status code is default (500)
-		assertThat("ODataExceptionMapper.getHttpStatusCode", httpStatusCode, is(500));
+		assertThat("DefaultExceptionMapper.getHttpStatusCode()", httpStatusCode, is(500));
 	}
 	
 	@Test
@@ -118,10 +117,10 @@ public class ODataExceptionMapperTest {
 		exception.setCode(null);
 		
 		// When
-		final int httpStatusCode = ODataExceptionMapper.getHttpStatusCode(exception);
+		final int httpStatusCode = DefaultExceptionMapper.getHttpStatusCode(exception);
 		
 		// Then status code is default (500)
-		assertThat("ODataExceptionMapper.getHttpStatusCode", httpStatusCode, is(500));
+		assertThat("DefaultExceptionMapper.getHttpStatusCode()", httpStatusCode, is(500));
 	}
 	
 	@Test
@@ -131,10 +130,31 @@ public class ODataExceptionMapperTest {
 		exception.setCode("Not a number");
 		
 		// When
-		final int httpStatusCode = ODataExceptionMapper.getHttpStatusCode(exception);
+		final int httpStatusCode = DefaultExceptionMapper.getHttpStatusCode(exception);
 		
 		// Then status code is default (500)
-		assertThat("ODataExceptionMapper.getHttpStatusCode", httpStatusCode, is(500));
+		assertThat("DefaultExceptionMapper.getHttpStatusCode()", httpStatusCode, is(500));
+	}
+	
+	@Test
+	public void testGetHttpStatusCodeWhenNotAnODataExceptionThen500() {
+		// given
+		final RuntimeException exception = new RuntimeException("I am not an OData exception");
+		
+		// When
+		final int httpStatusCode = DefaultExceptionMapper.getHttpStatusCode(exception);
+		
+		// Then status code is default (500)
+		assertThat("DefaultExceptionMapper.getHttpStatusCode()", httpStatusCode, is(500));
+	}
+	
+	@Test
+	public void testGetHttpStatusCodeWhenNullExceptionThen500() {
+		// When
+		final int httpStatusCode = DefaultExceptionMapper.getHttpStatusCode(null);
+		
+		// Then status code is default (500)
+		assertThat("DefaultExceptionMapper.getHttpStatusCode()", httpStatusCode, is(500));
 	}
 	
 }

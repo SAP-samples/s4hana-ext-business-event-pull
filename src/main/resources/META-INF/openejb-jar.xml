@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openejb-jar>
+	<pojo-deployment class-name="jaxrs-application">
+		<properties>
+			# prevents CXF from lengthy scan for providers and from picking up 
+			cxf.jaxrs.skip-provider-scanning = true
+			# list of CXF providers
+			cxf.jaxrs.providers = com.sap.cldfnd.behsampleapp.rest.errorhandling.DefaultExceptionMapper,com.sap.cldfnd.behsampleapp.rest.JsonProvider
+		</properties>
+	</pojo-deployment>
+</openejb-jar>

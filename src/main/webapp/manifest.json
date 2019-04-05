@@ -64,7 +64,7 @@
 			},
 			"": {
 				"type": "sap.ui.model.json.JSONModel",
-				"uri": "./CXFServlet/api/beh/updatedSalesOrders",
+				"uri": "./api/beh/updatedSalesOrders",
 				"preload": true
 			}
 		},

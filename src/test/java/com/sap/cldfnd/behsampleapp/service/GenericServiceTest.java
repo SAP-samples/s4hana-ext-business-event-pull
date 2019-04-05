@@ -13,7 +13,6 @@ import static org.hamcrest.Matchers.*;
 import javax.ws.rs.core.MediaType;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import com.sap.cldfnd.behsampleapp.rest.errorhandling.ErrorResponse;
 import com.sap.cloud.sdk.odatav2.connectivity.ODataException;
 import com.sap.cloud.sdk.testutil.MockUtil;
 
@@ -23,7 +22,7 @@ import com.sap.cloud.sdk.testutil.MockUtil;
 public abstract class GenericServiceTest {
 	
 	@Rule
-	public WireMockRule wireMockRule = new WireMockRule(31337);
+	public WireMockRule wireMockRule = mockUtil.mockErpServer();
 	
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
@@ -46,7 +45,7 @@ public abstract class GenericServiceTest {
 		// Given that S/4HANA returns 500 with a dummy error message
 		final int httpErrorCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
 		final String errorMessage = "Dummy error message";
-		final String errorJson = ErrorResponse.of(errorMessage, httpErrorCode).toJson();
+		final String errorJson = "{ \"error\": { \"code\": \"S/4HANA Code\", \"message\": { \"lang\": \"en\", \"value\": \"" + errorMessage + "\" }}}";
 		givenThat(get(anyUrl()).willReturn(status(httpErrorCode).withBody(errorJson)));
 
 		thrown.expect(ODataException.class);
@@ -73,7 +72,7 @@ public abstract class GenericServiceTest {
 		final int httpErrorCode = HttpStatus.SC_UNAUTHORIZED;
 		final String errorCodeFromResponseBody = "Error code from response body";
 		final String errorMessage = "Dummy error message";
-		final String errorJson = ErrorResponse.of(errorMessage, errorCodeFromResponseBody).toJson();
+		final String errorJson = "{ \"error\": { \"code\": \"" + errorCodeFromResponseBody + "\", \"message\": { \"lang\": \"en\", \"value\": \"" + errorMessage + "\" }}}";
 		givenThat(get(anyUrl()).willReturn(status(httpErrorCode).withBody(errorJson)));
 
 		thrown.expect(ODataException.class);

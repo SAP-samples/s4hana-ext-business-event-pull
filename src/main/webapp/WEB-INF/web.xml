@@ -4,17 +4,6 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 
-	<servlet>
-        <servlet-name>CXFServlet</servlet-name>
-        <servlet-class>org.apache.cxf.cdi.CXFCdiServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>CXFServlet</servlet-name>
-        <url-pattern>/CXFServlet/*</url-pattern>
-    </servlet-mapping>
-
 	<login-config>
 		<auth-method>FORM</auth-method>
 	</login-config>
@@ -34,26 +23,7 @@
 		<role-name>Everyone</role-name>
 	</security-role>
 	
-	<!-- ============================================================== -->
-	<!-- UI5 resource servlet used to handle application resources      -->
-	<!-- ============================================================== -->
 
-	<servlet>
-		<display-name>ResourceServlet</display-name>
-		<servlet-name>ResourceServlet</servlet-name>
-		<servlet-class>com.sap.ui5.resource.ResourceServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ResourceServlet</servlet-name>
-		<url-pattern>/resources/*</url-pattern>
-	</servlet-mapping>
-	<!-- BEGIN: test-resources -->
-	<!-- test-resources mapping has to be switched off for productive use on a Java server! -->
-	<servlet-mapping>
-		<servlet-name>ResourceServlet</servlet-name>
-		<url-pattern>/test-resources/*</url-pattern>
-	</servlet-mapping>
-	<!-- END: test-resources -->
 	<!-- BEGIN: DEV MODE -->
 	<!-- DEV MODE switched off by default and can be switched on during development -->
 	<!-- but has to be switched off for productive use on a Java server! -->
@@ -63,54 +33,6 @@
 	</context-param>
 	<!-- END: DEV MODE -->
 
-	<!-- NOTE TO THE REVIEWER
-		Those filters were causing an exception in the deploying,
-		CacheControlFilter cannot be found	 -->
-
-	<!-- ============================================================== -->
-	<!-- Cache Control Filter to prevent caching of any resource        -->
-	<!-- ============================================================== -->
-	
-<!--
-	<filter>
-		<display-name>CacheControlFilter</display-name>
-		<filter-name>CacheControlFilter</filter-name>
-		<filter-class>com.sap.ui5.resource.CacheControlFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>CacheControlFilter</filter-name>
-		<url-pattern>*.html</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>CacheControlFilter</filter-name>
-		<url-pattern>*.js</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>CacheControlFilter</filter-name>
-		<url-pattern>*.xml</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>CacheControlFilter</filter-name>
-		<url-pattern>*.json</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>CacheControlFilter</filter-name>
-		<url-pattern>*.css</url-pattern>
-	</filter-mapping>
--->
-
-	<!-- ============================================================== -->
-	<!-- UI5 proxy servlet                                              -->
-	<!-- ============================================================== -->
-
-	<servlet>
-		<servlet-name>SimpleProxyServlet</servlet-name>
-		<servlet-class>com.sap.ui5.proxy.SimpleProxyServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>SimpleProxyServlet</servlet-name>
-		<url-pattern>/proxy/*</url-pattern>
-	</servlet-mapping>
 
 	<!-- ============================================================== -->
 	<!-- Welcome file list                                              -->

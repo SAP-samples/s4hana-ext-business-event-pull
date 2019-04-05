@@ -1,0 +1,16 @@
+{
+    "error": {
+        "code": "ODataException",
+        "message": {
+            "lang": "en",
+            "value": "Unable to fetch the metadata : Failed to execute OData Metadata request."
+        },
+        "innerError": {
+            "error": {
+                "message": {
+                    "lang": "en"
+                }
+            }
+        }
+    }
+}

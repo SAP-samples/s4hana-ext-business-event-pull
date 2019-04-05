@@ -70,30 +70,9 @@ sap.ui.define([
 			 * @returns {string} formatted text to show in {@link sap.m.MessageBox} as details.
 			 */
 			_prepareErrorDetailsToShow : function (oDetails) {
-				// parsing the received JSON formatted responseText
-				var oErrorResponseText = JSON.parse(oDetails.responseText);
-				
 				//creating the string in HTML form to show
 				
-				var sDetailsInHTML = 
-					`<p>Backend responded with the following information:<br>
-					HTML Status Code: ${oDetails.statusCode}<br>
-					Message: ${oDetails.message}<br>
-					Error Code: ${oErrorResponseText.error.code}<br>
-					Error Message: "${oErrorResponseText.error.message.value}" </p>
-					
-					<p><strong>This can happen if:</strong></p>\n
-					<ul>
-					<li>Backend system is down</li>
-					<li>Wrong S/4 destination configuration</li>
-					<li>Missing/wrong communication arrangement</li>
-					<li>Technical user is locked due to several log on trial with wrong credentials<br>
-					You can simply check this by using <em>Display Technical Users</em> app in your S/4HANA.<br>
-					If this is the case, you can simply unclock your user in the app as well.</li>
-					<li>a backend component is not <em>available</em></li>
-					<li>You are not connected to the internet</li>
-					</ul>
-					<p>Get more help <a href="https://help.sap.com/viewer/index" target="_top">here</a>.`;
+				var sDetailsInHTML = `<pre>` + oDetails.responseText + `</pre>`;
 
 				return sDetailsInHTML;
 			},

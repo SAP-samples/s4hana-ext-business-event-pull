@@ -25,9 +25,11 @@ import com.sap.cloud.sdk.s4hana.datamodel.odata.helper.FluentHelperRead;
 import com.sap.cloud.sdk.s4hana.datamodel.odata.namespaces.businesseventqueue.Behqueuedata;
 import com.sap.cloud.sdk.s4hana.datamodel.odata.namespaces.salesorder.SalesOrder;
 
-@Path("/beh/")
+@Path(BehController.PATH)
 public class BehController {
 	
+	public static final String PATH = "/beh/updatedSalesOrders";
+
 	/**
 	 * Due to the limitation on the length of a query to S/4HANA OData service,
 	 * we recommend to always limit the number of requested entities.
@@ -46,10 +48,8 @@ public class BehController {
 	protected SalesOrderService salesOrderService;
 	
 	@GET
-	@Path("/updatedSalesOrders")
 	@Produces(MediaType.APPLICATION_JSON)
-	public TopResults<BusinessEvent<com.sap.cloud.sdk.s4hana.datamodel.odata.namespaces.salesorder.SalesOrder>> getUpdatedSalesOrders() throws ODataException {
-		
+	public TopResults<BusinessEvent<SalesOrder>> getUpdatedSalesOrders() throws ODataException {
 		// Get business events 
 		final List<Behqueuedata> allBusinessEvents = businessEventService.getSalesOrderEvents();
 		
@@ -57,7 +57,7 @@ public class BehController {
 		final Set<String> salesOrdersKeys = allBusinessEvents.stream()
 				.limit(RESULT_SIZE_LIMIT)
 				.map(Behqueuedata::getSAPBusinessObjectKey1)
-				.map(this::trimLeadingZeroes)
+				.map(BehController::trimLeadingZeroes)
 				.collect(toSet());
 		
 		// Get sales orders from business events grouping by key
@@ -78,7 +78,7 @@ public class BehController {
 		return TopResults.of(businessEventsSalesOrders, allBusinessEvents.size() > RESULT_SIZE_LIMIT);
 	}
 
-	public String trimLeadingZeroes(String zerosPrefixedKey) {
+	public static String trimLeadingZeroes(String zerosPrefixedKey) {
 		return StringUtils.stripStart(zerosPrefixedKey, "0");
 	}
 	

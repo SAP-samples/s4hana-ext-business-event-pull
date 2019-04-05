@@ -2,35 +2,63 @@ This program references the following third party open source or other free down
 The third party licensors of these components may provide additional license rights,
 terms and conditions and/or require certain notices as described below.
 
-Jackson-JAXRS-JSON (com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.9.3 - http://github.com/FasterXML/jackson-jaxrs-providers/jackson-jaxrs-json-provider)
-Licensed under The Apache Software License, Version 2.0
-
-WireMock (com.github.tomakehurst:wiremock:2.10.1 - http://wiremock.org)
-Licensed under The Apache Software License, Version 2.0
-
-API for SAP Cloud Platform (Java Web Tomcat 8) (com.sap.cloud:neo-java-web-api:3.44.5 - https://hana.ondemand.com)
+API for SAP Cloud Platform (Java EE 7 Web Profile TomEE 7) (com.sap.cloud:neo-javaee7-wp-api:1.33.16 - https://hana.ondemand.com)
 Licensed under SAP DEVELOPER LICENSE AGREEMENT
 
-S/4HANA - Data Model (com.sap.cloud.s4hana:datamodel:2.0.0 - https://www.sap.com/s4sdk)
+Cloud Platform - SAP CP Neo (com.sap.cloud.s4hana.cloudplatform:scp-neo:2.12.0 - https://www.sap.com/s4sdk)
 Licensed under SAP DEVELOPER LICENSE AGREEMENT
 
-S/4HANA - Test Utilities (com.sap.cloud.s4hana:testutil:2.0.0 - https://www.sap.com/s4sdk)
-Licensed under SAP DEVELOPER LICENSE AGREEMENT
-
-Cloud Platform - SCP Neo (com.sap.cloud.s4hana.cloudplatform:scp-neo:2.0.0 - https://www.sap.com/s4sdk)
-Licensed under SAP DEVELOPER LICENSE AGREEMENT
-
-JUnit (junit:junit:4.12 - http://junit.org)
-Licensed under Eclipse Public License 1.0
-
-Apache CXF CDI Integration (org.apache.cxf:cxf-integration-cdi:3.1.14 - http://cxf.apache.org)
-Licensed under The Apache Software License, Version 2.0
+el-ri (com.sun.el:el-ri:1.0 - no url defined)
+Licensed under Unknown license
 
 Hamcrest All (org.hamcrest:hamcrest-all:1.3 - https://github.com/hamcrest/JavaHamcrest/hamcrest-all)
 Licensed under New BSD License
 
-Weld Servlet (Uber Jar) (org.jboss.weld.servlet:weld-servlet:2.4.6.Final - http://weld.cdi-spec.org)
+Hamcrest JSON (uk.co.datumedge:hamcrest-json:0.2 - https://github.com/hertzsprung/hamcrest-json)
+Licensed under MIT License
+
+Jackson-annotations (com.fasterxml.jackson.core:jackson-annotations:2.9.0 - http://github.com/FasterXML/jackson)
+Licensed under The Apache Software License, Version 2.0
+
+Jackson-core (com.fasterxml.jackson.core:jackson-core:2.9.8 - https://github.com/FasterXML/jackson-core)
+Licensed under The Apache Software License, Version 2.0
+
+jackson-databind (com.fasterxml.jackson.core:jackson-databind:2.9.8 - http://github.com/FasterXML/jackson)
+Licensed under The Apache Software License, Version 2.0
+
+Jackson-JAXRS-JSON (com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.9.8 - http://github.com/FasterXML/jackson-jaxrs-providers/jackson-jaxrs-json-provider)
+Licensed under The Apache Software License, Version 2.0
+
+JUnit (junit:junit:4.12 - http://junit.org)
+Licensed under Eclipse Public License 1.0
+
+OpenEJB :: Arquillian Adaptors Parent :: Embedded Adaptor (org.apache.tomee:arquillian-tomee-embedded:7.0.5 - http://tomee.apache.org/arquillian/arquillian-tomee-embedded)
 Licensed under Apache License, Version 2.0
+
+OpenEJB :: TomEE :: RS Web Services (org.apache.tomee:tomee-jaxrs:7.0.5 - http://tomee.apache.org/tomee/tomee-jaxrs)
+Licensed under Apache License, Version 2.0
+
+OpenEJB :: TomEE :: TomEE Embedded (org.apache.tomee:tomee-embedded:7.0.5 - http://tomee.apache.org/tomee/tomee-embedded)
+Licensed under Apache License, Version 2.0
+
+Project Lombok (org.projectlombok:lombok:1.18.2 - https://projectlombok.org)
+Licensed under The MIT License
+
+REST Assured (io.rest-assured:rest-assured:3.2.0 - http://code.google.com/p/rest-assured)
+Licensed under Apache 2.0
+
+SAP S/4HANA - Test Utilities (com.sap.cloud.s4hana:testutil:2.12.0 - https://www.sap.com/s4sdk)
+Licensed under SAP DEVELOPER LICENSE AGREEMENT
+
+SAP S/4HANA - Virtual Data Model (VDM) (com.sap.cloud.s4hana:datamodel:2.12.0 - https://www.sap.com/s4sdk)
+Licensed under SAP DEVELOPER LICENSE AGREEMENT
+
+SLF4J API Module (org.slf4j:slf4j-api:1.7.25 - http://www.slf4j.org)
+Licensed under MIT License
 
 SLF4J Simple Binding (org.slf4j:slf4j-simple:1.7.25 - http://www.slf4j.org)
 Licensed under MIT License
+
+WireMock (com.github.tomakehurst:wiremock:2.19.0 - http://wiremock.org)
+Licensed under The Apache Software License, Version 2.0
+

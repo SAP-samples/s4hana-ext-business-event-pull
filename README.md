@@ -1,3 +1,6 @@
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/s4hana-ext-business-event-pull)](https://api.reuse.software/info/github.com/SAP-samples/s4hana-ext-business-event-pull)
+
+
 # SAP S/4HANA Cloud Extensions - Display Created or Changed Sales Orders Using Business Event Handling
 This repository contains the sample code for the [Display Created or Changed Sales Orders Using Business Event Handling tutorial](http://tiny.cc/s4-business-event-pull).
 

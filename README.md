@@ -18,7 +18,7 @@ SAP Extensibility Explorer is a central place where anyone involved in the exten
 
 Requirements
 -------------
-- An account in SAP Cloud Platform with a subaccount in the Neo environment and an SAP Cloud Platform Java server of any size.
+- An account in SAP Business Technology Platform (BTP) with a subaccount in the Neo environment and an SAP Business Technology Platform (BTP) Java server of any size.
 - An SAP S/4HANA Cloud tenant. **This is a commercial paid product.**
 - [Java SE 8 Development Kit (JDK)](https://www.oracle.com/technetwork/java/javase/downloads/index.html) and [Apache Maven](http://maven.apache.org/download.cgi) to build the application.
 
@@ -31,7 +31,7 @@ This repository is a part of the [Download the App](https://help.sap.com/viewer/
 
 Known issues
 ---------------------
-If you are working with an SAP Cloud Platform _Trial_ account, you must add the following 2 properties to the destination so that the connection to SAP S/4HANA Cloud works:
+If you are working with an SAP Business Technology Platform (BTP)_Trial_ account, you must add the following 2 properties to the destination so that the connection to SAP S/4HANA Cloud works:
 ```
 proxyHost = proxy-trial.od.sap.biz
 proxyPort = 8080

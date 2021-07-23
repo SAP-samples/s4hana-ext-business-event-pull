@@ -2,7 +2,7 @@ This program references the following third party open source or other free down
 The third party licensors of these components may provide additional license rights,
 terms and conditions and/or require certain notices as described below.
 
-API for SAP Cloud Platform (Java EE 7 Web Profile TomEE 7) (com.sap.cloud:neo-javaee7-wp-api:1.33.16 - https://hana.ondemand.com)
+API for SAP Business Technology Platform (BTP) (Java EE 7 Web Profile TomEE 7) (com.sap.cloud:neo-javaee7-wp-api:1.33.16 - https://hana.ondemand.com)
 Licensed under SAP DEVELOPER LICENSE AGREEMENT
 
 Cloud Platform - SAP CP Neo (com.sap.cloud.s4hana.cloudplatform:scp-neo:2.12.0 - https://www.sap.com/s4sdk)

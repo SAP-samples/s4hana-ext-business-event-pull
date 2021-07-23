@@ -35,14 +35,14 @@
 			<artifactId>datamodel</artifactId>
 		</dependency>
 		
-		<!-- API of Java EE 7 Web Profile TomEE 7 from SAP Cloud Platform -->
+		<!-- API of Java EE 7 Web Profile TomEE 7 from SAP Business Technology Platform (BTP)-->
 		<dependency>
 			<groupId>com.sap.cloud</groupId>
 			<artifactId>neo-javaee7-wp-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Implementation of the Cloud platform abstraction for core platform functionality on the SAP Cloud Platform (Neo) -->		
+		<!-- Implementation of the Cloud platform abstraction for core platform functionality on the SAP Business Technology Platform (BTP) -->		
 		<dependency>
 			<groupId>com.sap.cloud.s4hana.cloudplatform</groupId>
 			<artifactId>scp-neo</artifactId>
@@ -68,7 +68,7 @@
 			<artifactId>jackson-core</artifactId>
 		</dependency>
 		
-		<!-- Logging facade used by SAP Cloud Platform -->
+		<!-- Logging facade used by SAP Business Technology Platform (BTP) -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -106,7 +106,7 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- Mocking SAP Cloud Platform specific objects: destinations, user, platform etc -->
+		<!-- Mocking SAP Business Technology Platform (BTP) specific objects: destinations, user, platform etc -->
 		<dependency>
 			<groupId>com.sap.cloud.s4hana</groupId>
 			<artifactId>testutil</artifactId>
